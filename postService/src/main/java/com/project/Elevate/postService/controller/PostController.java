@@ -1,5 +1,6 @@
 package com.project.Elevate.postService.controller;
 
+import com.project.Elevate.postService.auth.AuthContextHolder;
 import com.project.Elevate.postService.dto.PostCreateRequestDto;
 import com.project.Elevate.postService.dto.PostDto;
 import com.project.Elevate.postService.entity.Post;
@@ -41,6 +42,7 @@ public class PostController {
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long postId){
+        Long userId = AuthContextHolder.getCurrentUserId();
         PostDto postDto = postService.getPostById(postId);
         return ResponseEntity.ok(postDto);
     }
