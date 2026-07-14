@@ -1,4 +1,4 @@
-package com.project.Elevate.ConnectionService.auth;
+package com.project.Elevate.ConnectionService.connectionService.auth;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

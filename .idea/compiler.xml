@@ -9,7 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DiscoverServer" />
       </profile>
-      <profile name="Annotation profile for postService" enabled="true">
+      <profile name="Annotation profile for ConnectionService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,6 +19,7 @@
         <module name="ConnectionService" />
         <module name="APIGateway" />
         <module name="postService" />
+        <module name="notification-service" />
         <module name="userService" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
       <module name="APIGateway" options="-parameters" />
       <module name="ConnectionService" options="-parameters" />
       <module name="DiscoverServer" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="postService" options="-parameters" />
       <module name="userService" options="-parameters" />
     </option>

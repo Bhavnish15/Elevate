@@ -1,9 +1,10 @@
-package com.project.Elevate.ConnectionService.controller;
+package com.project.Elevate.ConnectionService.connectionService.controller;
 
-import com.project.Elevate.ConnectionService.entity.Person;
-import com.project.Elevate.ConnectionService.services.ConnectionsService;
+import com.project.Elevate.ConnectionService.connectionService.entity.Person;
+import com.project.Elevate.ConnectionService.connectionService.services.ConnectionsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +23,11 @@ public class ConnectionsController {
         log.info("User id is {}", userId);
         List<Person> personList = connectionsService.getFirstDegreeConnectionsOfUser(userId);
         return ResponseEntity.ok(personList);
+    }
+
+    @PostMapping("/request/{userId}")
+    public ResponseEntity<Void> sendConnectionRequest(@PathVariable Long userId) throws BadRequestException {
+        connectionsService.sendConnectionRequest(userId);
+        return ResponseEntity.noContent().build();
     }
 }

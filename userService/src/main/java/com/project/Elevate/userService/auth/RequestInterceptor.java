@@ -1,6 +1,5 @@
 package com.project.Elevate.userService.auth;
 
-import com.project.Elevate.postService.auth.AuthContextHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jspecify.annotations.Nullable;
@@ -12,7 +11,9 @@ public class RequestInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String userId = request.getHeader("X-User-Id");
-        AuthContextHolder.setCurrentUserId(Long.valueOf(userId));
+        if (userId != null) {
+            AuthContextHolder.setCurrentUserId(Long.valueOf(userId));
+        }
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 

@@ -1,6 +1,6 @@
-package com.project.Elevate.ConnectionService.auth;
+package com.project.Elevate.ConnectionService.connectionService.auth;
 
-import com.project.Elevate.postService.auth.AuthContextHolder;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jspecify.annotations.Nullable;
