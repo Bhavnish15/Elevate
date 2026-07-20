@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uploader-service
+spec:
+  selector:
+    matchLabels:
+      app: uploader-service
+  template:
+    metadata:
+      labels:
+        app: uploader-service
+    spec:
+      containers:
+      - name: uploader-service
+        image: bhavnishbhardwaj/uploader-service
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: k8s
+          - name: CLOUDINARY_CLOUD_NAME
+            valueFrom:
+              secretKeyRef:
+                name: uploader-secrets
+                key: CLOUDINARY_CLOUD_NAME
+          - name: CLOUDINARY_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: uploader-secrets
+                key: CLOUDINARY_API_KEY
+          - name: CLOUDINARY_API_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: uploader-secrets
+                key: CLOUDINARY_API_SECRET
+          - name: GCLOUD_STORAGE_BUCKET_NAME
+            value: elevate-linkedin-clone
+        volumeMounts:
+          - name: gcloud-key
+            mountPath: /etc/secrets/gcloud
+            readOnly: true
+        ports:
+          - containerPort: 9050
+      volumes:
+        - name: gcloud-key
+          secret:
+            secretName: uploader-secrets
+            items:
+              - key: GCLOUD_STORAGE_KEY
+                path: key.json
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uploader-service
+spec:
+  selector:
+    app: uploader-service
+  ports:
+  - port: 80
+    targetPort: 9050

@@ -17,14 +17,14 @@ spring:
         webflux:
           routes:
             - id: user-service
-              uri: lb://USER-SERVICE
+              uri: ${USER_SERVICE_URI:lb://USER-SERVICE}
               predicates:
                 - Path=/api/v1/users/**
               filters:
                 - StripPrefix=2
 
             - id: post-service
-              uri: lb://POST-SERVICE
+              uri: ${POSTS_SERVICE_URI:lb://POST-SERVICE}
               predicates:
                 - Path=/api/v1/posts/**
               filters:
@@ -32,7 +32,7 @@ spring:
                 - name: AuthenticationFilter
 
             - id: connection-service
-              uri: lb://CONNECTION-SERVICE
+              uri: ${CONNECTIONS_SERVICE_URI:lb://CONNECTION-SERVICE}
               predicates:
                 - Path=/api/v1/connections/**
               filters:

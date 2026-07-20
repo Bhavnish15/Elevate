@@ -10,10 +10,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @RestController
@@ -34,9 +37,10 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
-    @PostMapping
-    public ResponseEntity<PostDto> createPost(@RequestBody PostCreateRequestDto postCreateRequestDto) {
-        PostDto postDto1 = postService.createPost(postCreateRequestDto, 1L);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<PostDto> createPost(@RequestPart("post") PostCreateRequestDto postCreateRequestDto,
+                                              @RequestPart("file")MultipartFile file) {
+        PostDto postDto1 = postService.createPost(postCreateRequestDto, file);
         return new ResponseEntity<>(postDto1, HttpStatus.CREATED);
     }
 
