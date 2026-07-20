@@ -19,8 +19,6 @@
 <!-- 🎬 Replace this with an actual demo GIF of the app in action -->
 <img src="./docs/assets/demo.gif" alt="Elevate demo" width="800"/>
 
-<sub>📸 *Add a screen recording of login → feed → post → like → notification flow here*</sub>
-
 </div>
 
 ---
@@ -90,8 +88,6 @@ graph TD
     style Neo4j fill:#018bff,color:#fff
 ```
 
-<sub>🎥 *Prefer a visual? Add an animated architecture walkthrough GIF at `./docs/assets/architecture.gif`*</sub>
-
 ---
 
 ## 🧰 Tech Stack
@@ -126,21 +122,6 @@ graph TD
 | 📁 **Uploader Service** | Media upload (images) via Cloudinary/GCS | `9050` | – |
 
 ---
-
-## 📸 Screenshots
-
-<div align="center">
-
-| Login | Feed | Notifications |
-|:---:|:---:|:---:|
-| <img src="./docs/assets/login.png" width="260"/> | <img src="./docs/assets/feed.png" width="260"/> | <img src="./docs/assets/notifications.png" width="260"/> |
-
-</div>
-
-<sub>📷 *Drop actual screenshots into `docs/assets/` and update the paths above*</sub>
-
----
-
 ## ⚡ Getting Started
 
 ### Prerequisites
